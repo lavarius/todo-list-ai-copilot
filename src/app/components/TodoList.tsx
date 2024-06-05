@@ -106,6 +106,38 @@ export const TodoList: React.FC = () => {
     render: "Updating the todo list...",
   });
 
+  // Define the "deleteTodo" action using the useCopilotAction function
+  useCopilotAction({
+    // Name of the action
+    name: "deleteTodo",
+
+    // Description of what the action does
+    description: "Delete a todo item",
+
+    // Define the parameters that the action accepts
+    parameters: [
+      {
+        // The name of the parameter
+        name: "id",
+
+        // The type of the parameter, a string
+        type: "string",
+
+        // Description of the parameter
+        description: "The id of the todo item to delete.",
+      },
+    ],
+
+    // Define the handler function that executes when the action is invoked
+    handler: ({ id }) => {
+      // Update the state by filtering out the todo item with the given id
+      setTodos(todos.filter((todo) => todo.id !== id));
+    },
+
+    // Provide feedback or a message while the action is processing
+    render: "Deleting a todo item...",
+  });
+
   // Function to add a new todo
   const addTodo = () => {
     if (input.trim() !== "") {
