@@ -4,6 +4,7 @@ import { TodoItem } from "./TodoItem"; // Importing the TodoItem component
 import { nanoid } from "nanoid"; // Importing the nanoid library for generating unique IDs
 import { useState } from "react"; // Importing the useState hook from React
 import { Todo } from "../types/todo"; // Importing the Todo type
+import { useCopilotAction, useCopilotReadable } from "@copilotkit/react-core"; // custom hooks
 
 // Defining the TodoList component as a functional component
 export const TodoList: React.FC = () => {
@@ -11,6 +12,11 @@ export const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   // State to hold the current input value
   const [input, setInput] = useState("");
+
+  useCopilotReadable({
+    description: "The user's todo list.",
+    value: todos,
+  });
 
   // Function to add a new todo
   const addTodo = () => {
